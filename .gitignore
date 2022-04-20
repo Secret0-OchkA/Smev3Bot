@@ -9,6 +9,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+jsconfig1.json
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

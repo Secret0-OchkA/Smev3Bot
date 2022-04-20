@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Smev_Bot": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
