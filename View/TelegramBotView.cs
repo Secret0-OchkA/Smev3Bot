@@ -25,6 +25,7 @@ namespace Smev_Bot.View
             _tokenSource = new CancellationTokenSource();
             _controller = new Controller(this);
             _botName = config.name;
+            InitializeComponets();
         }
 
         public async Task Start()
@@ -53,9 +54,10 @@ namespace Smev_Bot.View
 
         async Task HandleUpdateAsync(ITelegramBotClient clietn, Update update, CancellationToken cancellationToken)
         {
-            if (update.Type != UpdateType.Message 
-             || update.Type != UpdateType.CallbackQuery
-             || update.Message == null)
+            if (update.Type != UpdateType.Message
+             && update.Type != UpdateType.CallbackQuery)
+                return;
+            if (update.Message == null)
                 return;
             
             long chatId = update.Message.Chat.Id;
@@ -85,20 +87,20 @@ namespace Smev_Bot.View
                 case UpdateType.Message:
                     switch (updateArgs.commandType)
                     {
-                        case CommandType.RequestCount: HandleRequestCount?.Invoke(this, updateArgs); break;
-                        case CommandType.RequestHistory: HandleRequestsHistory?.Invoke(this, updateArgs); break;
-                        case CommandType.UpdateTimeNews: HandleUpdateTimeNews?.Invoke(this, updateArgs); break;
-                        case CommandType.Search: HandleSearch?.Invoke(this, updateArgs); break;
+                        case CommandType.RequestCount: HandleRequestCount?.Invoke(_client, updateArgs, cancellationToken); break;
+                        case CommandType.RequestHistory: HandleRequestsHistory?.Invoke(_client, updateArgs, cancellationToken); break;
+                        case CommandType.UpdateTimeNews: HandleUpdateTimeNews?.Invoke(_client, updateArgs, cancellationToken); break;
+                        case CommandType.Search: HandleSearch?.Invoke(_client, updateArgs, cancellationToken); break;
 
                         case CommandType.UnknowCommand: break;
                     }
                     break;
                 case UpdateType.CallbackQuery:
-                    HandleButtonClick?.Invoke(this, updateArgs);
+                    HandleButtonClick?.Invoke(_client, updateArgs, cancellationToken);
                     break;
             }
 
-            DefaultResponse?.Invoke(this, updateArgs);
+            DefaultResponse?.Invoke(_client, updateArgs, cancellationToken);
         }
         private Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
         {

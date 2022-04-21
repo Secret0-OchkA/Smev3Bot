@@ -1,4 +1,6 @@
 ﻿using Smev_Bot.View;
+using Smev_Bot.Model;
+using Telegram.Bot;
 
 namespace Smev_Bot.Controllers
 {
@@ -25,11 +27,47 @@ namespace Smev_Bot.Controllers
             view.HandleButtonClick += ButtonClickEvent;
         }
 
-        void NumberRequestsEvent(object? sender, UpdateArgs e) { throw new NotImplementedException(); }
-        void RequestsEvent(object? sender, UpdateArgs e) { throw new NotImplementedException(); }
-        void UpdateEvent(object? sender, UpdateArgs e) { throw new NotImplementedException(); }
-        void SearchEvent(object? sender, UpdateArgs e) { throw new NotImplementedException(); }
+        async void NumberRequestsEvent(object? sender, UpdateArgs e, CancellationToken token) 
+        {
+            if(sender is TelegramBotClient client)
+            await client.SendTextMessageAsync(
+            chatId: e.ChatId,
+            text: "в разработке",
+            cancellationToken: token);
+        }
+        async void RequestsEvent(object? sender, UpdateArgs e, CancellationToken token)
+        {
+            if (sender is TelegramBotClient client)
+                await client.SendTextMessageAsync(
+                chatId: e.ChatId,
+                text: "в разработке",
+                cancellationToken: token);
+        }
+        async void UpdateEvent(object? sender, UpdateArgs e, CancellationToken token)
+        {
+            if (sender is TelegramBotClient client)
+                await client.SendTextMessageAsync(
+                chatId: e.ChatId,
+                text: "в разработке",
+                cancellationToken: token);
+        }
+        async void SearchEvent(object? sender, UpdateArgs e, CancellationToken token) 
+        {
+            if (sender is TelegramBotClient client)
+                await client.SendTextMessageAsync(
+                chatId: e.ChatId,
+                text: "A message with an inline keyboard markup",
+                replyMarkup: KeyBoards.TypeInformation(),
+                cancellationToken: token);
+        }
 
-        void ButtonClickEvent(object? sender, UpdateArgs e) { throw new NotImplementedException(); }
+        async void ButtonClickEvent(object? sender, UpdateArgs e, CancellationToken token)
+        {
+            if (sender is TelegramBotClient client)
+                await client.SendTextMessageAsync(
+                chatId: e.ChatId,
+                text: "в разработке",
+                cancellationToken: token);
+        }
     }
 }
