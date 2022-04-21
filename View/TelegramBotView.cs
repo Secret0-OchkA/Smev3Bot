@@ -98,9 +98,11 @@ namespace Smev_Bot.View
                 case UpdateType.CallbackQuery:
                     HandleButtonClick?.Invoke(_client, updateArgs, cancellationToken);
                     break;
+
+                default: DefaultResponse?.Invoke(_client, updateArgs, cancellationToken); break;
             }
 
-            DefaultResponse?.Invoke(_client, updateArgs, cancellationToken);
+            
         }
         private Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
         {

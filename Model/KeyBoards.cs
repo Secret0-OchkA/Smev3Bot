@@ -16,6 +16,9 @@ namespace Smev_Bot.Model
                 new []
                 {
                     InlineKeyboardButton.WithCallbackData(text: "Региональный уровень", callbackData: "reg"),
+                },
+                new []
+                {
                     InlineKeyboardButton.WithCallbackData(text: "Федеральный уровень", callbackData: "fed"),
                 }
             });
