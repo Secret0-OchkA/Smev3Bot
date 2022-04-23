@@ -15,11 +15,11 @@ namespace Smev_Bot.Model
             {
                 new []
                 {
-                    InlineKeyboardButton.WithCallbackData(text: "Региональный уровень", callbackData: "reg"),
+                    InlineKeyboardButton.WithCallbackData(text: "Региональный уровень", callbackData: "1;reg"),
                 },
                 new []
                 {
-                    InlineKeyboardButton.WithCallbackData(text: "Федеральный уровень", callbackData: "fed"),
+                    InlineKeyboardButton.WithCallbackData(text: "Федеральный уровень", callbackData: "1;fed"),
                 }
             });
         }
@@ -29,8 +29,8 @@ namespace Smev_Bot.Model
             {
                 new []
                 {
-                    InlineKeyboardButton.WithCallbackData(text: "Продуктивная среда", callbackData: "true"),
-                    InlineKeyboardButton.WithCallbackData(text: "Тестовая среда", callbackData: "false"),
+                    InlineKeyboardButton.WithCallbackData(text: "Продуктивная среда", callbackData: "2;true"),
+                    InlineKeyboardButton.WithCallbackData(text: "Тестовая среда", callbackData: "2;false"),
                 }
             });
         }
@@ -40,10 +40,10 @@ namespace Smev_Bot.Model
             {
                 new []
                 {
-                    InlineKeyboardButton.WithCallbackData(text: "Межведомственное взаимодействие", callbackData: "1"),
-                    InlineKeyboardButton.WithCallbackData(text: "Базовый реестр", callbackData: "2"),
-                    InlineKeyboardButton.WithCallbackData(text: "Приём заявлений с ЕПГУ", callbackData: "3"),
-                    InlineKeyboardButton.WithCallbackData(text: "Прием заявлений с МФЦ", callbackData: "4"),
+                    InlineKeyboardButton.WithCallbackData(text: "Межведомственное взаимодействие", callbackData: "3;1"),
+                    InlineKeyboardButton.WithCallbackData(text: "Базовый реестр", callbackData: "3;2"),
+                    InlineKeyboardButton.WithCallbackData(text: "Приём заявлений с ЕПГУ", callbackData: "3;3"),
+                    InlineKeyboardButton.WithCallbackData(text: "Прием заявлений с МФЦ", callbackData: "3;4"),
                 }
             });
         }
@@ -53,10 +53,28 @@ namespace Smev_Bot.Model
 {
                 new []
                 {
-                    InlineKeyboardButton.WithCallbackData(text: "Поиск по наименованию", callbackData: "true"),
-                    InlineKeyboardButton.WithCallbackData(text: "Поиск по параметрам", callbackData: "false"),
+                    InlineKeyboardButton.WithCallbackData(text: "Поиск по наименованию", callbackData: "4;true"),
+                    InlineKeyboardButton.WithCallbackData(text: "Поиск по параметрам", callbackData: "4;false"),
                 }
             });
+        }
+    }
+
+    public enum CallBackType
+    {
+        UnknowType,
+        Information,
+        Environment,
+        Application,
+        Search,
+    }
+    public class CallbackConverter
+    {
+        public static KeyValuePair<CallBackType,string> Convert(string data)
+        {
+            string[] dataArr = data.Split(';');
+            CallBackType type = (CallBackType)Enum.Parse(typeof(CallBackType), dataArr[0]);
+            return new KeyValuePair<CallBackType, string>(type, dataArr[1]);
         }
     }
 }

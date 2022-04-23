@@ -26,17 +26,17 @@ namespace Smev_Bot.View
         }
         #region EventLogs
         public void LogRequestCount(object? sender, UpdateArgs e, CancellationToken token)
-        { Console.WriteLine($"CountRequest\tchatId:\t{e.ChatId}\tcallback:{e.CallBackData}\tmessage:{e.Message}"); }
+        { Console.WriteLine($"CountRequest    chatId:\t{e.ChatId}\tcallback:{e.CallBackData}\tmessage:{e.Message}"); }
         public void LogRequestsHistory(object? sender, UpdateArgs e, CancellationToken token)
-        { Console.WriteLine($"RequestHistory\tchatId:\t{e.ChatId}\tcallback:{e.CallBackData}\tmessage:{e.Message}"); }
+        { Console.WriteLine($"RequestHistory  chatId:\t{e.ChatId}\tcallback:{e.CallBackData}\tmessage:{e.Message}"); }
         public void LogUpdateTimeNews(object? sender, UpdateArgs e, CancellationToken token)
-        { Console.WriteLine($"UpdateTimeNews\tchatId:\t{e.ChatId}\tcallback:{e.CallBackData}\tmessage:{e.Message}"); }
+        { Console.WriteLine($"UpdateTimeNews  chatId:\t{e.ChatId}\tcallback:{e.CallBackData}\tmessage:{e.Message}"); }
         public void LogSearch(object? sender, UpdateArgs e, CancellationToken token)
-        { Console.WriteLine($"Search\t\tchatId:\t{e.ChatId}\tcallback:{e.CallBackData}\tmessage:{e.Message}"); }
+        { Console.WriteLine($"Search          chatId:\t{e.ChatId}\tcallback:{e.CallBackData}\tmessage:{e.Message}"); }
         public void LogDefaultResponse(object? sender, UpdateArgs e, CancellationToken token)
-        { Console.WriteLine($"DefaultResponse\tchatId:\t{e.ChatId}\tcallback:{e.CallBackData}\tmessage:{e.Message}"); }
+        { Console.WriteLine($"DefaultResponse chatId:\t{e.ChatId}\tcallback:{e.CallBackData}\tmessage:{e.Message}"); }
         public void LogButtonClick(object? sender, UpdateArgs e, CancellationToken token)
-        { Console.WriteLine($"ButtonClick\tchatId:\t{e.ChatId}\tcallback:{e.CallBackData}\tmessage:{e.Message}"); }
+        { Console.WriteLine($"ButtonClick     chatId:\t{e.ChatId}\tcallback:{e.CallBackData}\tmessage:{e.Message}"); }
         #endregion
     }
 }

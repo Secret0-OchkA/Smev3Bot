@@ -59,6 +59,7 @@ namespace Smev_Bot.View
             {
                 updateArgs.ChatId = update.Message.Chat.Id;
                 updateArgs.Message = update.Message.Text;
+                updateArgs.MessageId = update.Message.MessageId;
 
                 Regex commandRegex = new Regex(@"^\/\w+$");
                 if (commandRegex.IsMatch(updateArgs.Message))
@@ -68,6 +69,7 @@ namespace Smev_Bot.View
             {
                 updateArgs.ChatId = update.CallbackQuery.Message.Chat.Id;
                 updateArgs.CallBackData = update.CallbackQuery.Data;
+                updateArgs.MessageId = update.CallbackQuery.Message.MessageId;
             }
             else return;
            
