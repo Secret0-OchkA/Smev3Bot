@@ -54,33 +54,22 @@ namespace Smev_Bot.View
 
         async Task HandleUpdateAsync(ITelegramBotClient clietn, Update update, CancellationToken cancellationToken)
         {
-            if (update.Type != UpdateType.Message
-             && update.Type != UpdateType.CallbackQuery)
-                return;
-            if (update.Message == null)
-                return;
-            
-            long chatId = update.Message.Chat.Id;
+            UpdateArgs updateArgs = new();
+            if (update.Type == UpdateType.Message)
+            {
+                updateArgs.ChatId = update.Message.Chat.Id;
+                updateArgs.Message = update.Message.Text;
 
-            UpdateArgs updateArgs = new UpdateArgs(chatId);
-
-            Task task1 = Task.Run(() =>
-            {
-                if (update.Message.Text != null)
-                    updateArgs.Message = update.Message.Text;
-            });
-            Task task2 = Task.Run(() =>
-            {
-                if (update.CallbackQuery != null)
-                    updateArgs.CallBackData = update.CallbackQuery.ChatInstance;
-            });
-            Task task3 = Task.Run(() =>
-            {
                 Regex commandRegex = new Regex(@"^\/\w+$");
-                if (update.Message.Text != null && commandRegex.IsMatch(update.Message.Text))
+                if (commandRegex.IsMatch(updateArgs.Message))
                     updateArgs.commandType = MakeCommand.StringToCommandType(update.Message.Text);
-            });
-            await Task.WhenAll(task1,task2,task3);
+            }
+            else if (update.Type == UpdateType.CallbackQuery)
+            {
+                updateArgs.ChatId = update.CallbackQuery.Message.Chat.Id;
+                updateArgs.CallBackData = update.CallbackQuery.Data;
+            }
+            else return;
            
             switch (update.Type)
             {

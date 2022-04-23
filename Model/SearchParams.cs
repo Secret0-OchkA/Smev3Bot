@@ -49,16 +49,14 @@ namespace Smev_Bot.Model
     {
         Commands commands = new Commands();
         public void AddCommand(ISearchParamsCommand command) => commands.Add(command);
-        public void ExecuteLast()
+        public void ExecuteAll()
         {
             commands.Where(c => !c.IsComplite)
                     .ToList()
                     .ForEach(c => c.Execute());
         }
-        public void UndoLast() 
-        {
-            commands.Last().Undo();
-        }
+        public void ExucuteLast() => commands.Last().Execute();
+        public void UndoLast() => commands.Last().Undo();
     }
 
     public interface ISearchParamsCommand

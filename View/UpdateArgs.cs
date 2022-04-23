@@ -8,7 +8,7 @@ namespace Smev_Bot.View
         public CommandType commandType { get; set; }
         public string CallBackData { get; set; }
         public string Message { get; set; }
-        public UpdateArgs(long chatId, string callBackData = "", string message = "", CommandType commandType = CommandType.UnknowCommand)
+        public UpdateArgs(long chatId = -1, string callBackData = "", string message = "", CommandType commandType = CommandType.UnknowCommand)
         {
             this.ChatId = chatId;
             this.CallBackData = callBackData;

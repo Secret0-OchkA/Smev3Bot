@@ -47,5 +47,16 @@ namespace Smev_Bot.Model
                 }
             });
         }
+        public static InlineKeyboardMarkup TypeSearch()
+        {
+            return new(new[]
+{
+                new []
+                {
+                    InlineKeyboardButton.WithCallbackData(text: "Поиск по наименованию", callbackData: "true"),
+                    InlineKeyboardButton.WithCallbackData(text: "Поиск по параметрам", callbackData: "false"),
+                }
+            });
+        }
     }
 }

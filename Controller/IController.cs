@@ -57,7 +57,7 @@ namespace Smev_Bot.Controllers
                 await client.SendTextMessageAsync(
                 chatId: e.ChatId,
                 text: "A message with an inline keyboard markup",
-                replyMarkup: KeyBoards.TypeInformation(),
+                replyMarkup: KeyBoards.TypeSearch(),
                 cancellationToken: token);
         }
 

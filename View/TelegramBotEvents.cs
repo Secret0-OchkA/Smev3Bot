@@ -22,18 +22,21 @@ namespace Smev_Bot.View
             HandleUpdateTimeNews += LogUpdateTimeNews;
             HandleSearch += LogSearch;
             DefaultResponse += LogDefaultResponse;
+            HandleButtonClick += LogButtonClick;
         }
         #region EventLogs
         public void LogRequestCount(object? sender, UpdateArgs e, CancellationToken token)
-        { Console.WriteLine($"CountRequest\tchatId:\t{e.ChatId}"); }
+        { Console.WriteLine($"CountRequest\tchatId:\t{e.ChatId}\tcallback:{e.CallBackData}\tmessage:{e.Message}"); }
         public void LogRequestsHistory(object? sender, UpdateArgs e, CancellationToken token)
-        { Console.WriteLine($"RequestHistory\tchatId:\t{e.ChatId}"); }
+        { Console.WriteLine($"RequestHistory\tchatId:\t{e.ChatId}\tcallback:{e.CallBackData}\tmessage:{e.Message}"); }
         public void LogUpdateTimeNews(object? sender, UpdateArgs e, CancellationToken token)
-        { Console.WriteLine($"UpdateTimeNews\tchatId:\t{e.ChatId}"); }
+        { Console.WriteLine($"UpdateTimeNews\tchatId:\t{e.ChatId}\tcallback:{e.CallBackData}\tmessage:{e.Message}"); }
         public void LogSearch(object? sender, UpdateArgs e, CancellationToken token)
-        { Console.WriteLine($"Search\tchatId:\t{e.ChatId}"); }
+        { Console.WriteLine($"Search\t\tchatId:\t{e.ChatId}\tcallback:{e.CallBackData}\tmessage:{e.Message}"); }
         public void LogDefaultResponse(object? sender, UpdateArgs e, CancellationToken token)
-        { Console.WriteLine($"DefaultResponse\tchatId:\t{e.ChatId}"); }
+        { Console.WriteLine($"DefaultResponse\tchatId:\t{e.ChatId}\tcallback:{e.CallBackData}\tmessage:{e.Message}"); }
+        public void LogButtonClick(object? sender, UpdateArgs e, CancellationToken token)
+        { Console.WriteLine($"ButtonClick\tchatId:\t{e.ChatId}\tcallback:{e.CallBackData}\tmessage:{e.Message}"); }
         #endregion
     }
 }
