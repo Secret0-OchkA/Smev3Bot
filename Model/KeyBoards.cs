@@ -40,10 +40,10 @@ namespace Smev_Bot.Model
             {
                 new []
                 {
-                    InlineKeyboardButton.WithCallbackData(text: "Межведомственное взаимодействие", callbackData: "3;1"),
-                    InlineKeyboardButton.WithCallbackData(text: "Базовый реестр", callbackData: "3;2"),
-                    InlineKeyboardButton.WithCallbackData(text: "Приём заявлений с ЕПГУ", callbackData: "3;3"),
-                    InlineKeyboardButton.WithCallbackData(text: "Прием заявлений с МФЦ", callbackData: "3;4"),
+                    InlineKeyboardButton.WithCallbackData(text: "Межведомственное взаимодействие", callbackData: "3;Межведомственное взаимодействие"),
+                    InlineKeyboardButton.WithCallbackData(text: "Базовый реестр", callbackData: "3;Базовый реестр"),
+                    InlineKeyboardButton.WithCallbackData(text: "Приём заявлений с ЕПГУ", callbackData: "3;Приём заявлений с ЕПГУ"),
+                    InlineKeyboardButton.WithCallbackData(text: "Прием заявлений с МФЦ", callbackData: "3;Прием заявлений с МФЦ"),
                 }
             });
         }
@@ -60,21 +60,22 @@ namespace Smev_Bot.Model
         }
     }
 
-    public enum CallBackType
+    public enum KeyboardType
     {
-        UnknowType,
-        Information,
-        Environment,
-        Application,
-        Search,
+        UnknowType = 0,
+        Information = 1,
+        Environment = 2,
+        Application = 3,
+        Search = 4,
     }
+
     public class CallbackConverter
     {
-        public static KeyValuePair<CallBackType,string> Convert(string data)
+        public static KeyValuePair<KeyboardType,string> Convert(string data)
         {
             string[] dataArr = data.Split(';');
-            CallBackType type = (CallBackType)Enum.Parse(typeof(CallBackType), dataArr[0]);
-            return new KeyValuePair<CallBackType, string>(type, dataArr[1]);
+            KeyboardType type = (KeyboardType)Enum.Parse(typeof(KeyboardType), dataArr[0]);
+            return new KeyValuePair<KeyboardType, string>(type, dataArr[1]);
         }
     }
 }

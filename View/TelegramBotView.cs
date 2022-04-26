@@ -83,8 +83,9 @@ namespace Smev_Bot.View
                         case CommandType.UpdateTimeNews: HandleUpdateTimeNews?.Invoke(_client, updateArgs, cancellationToken); break;
                         case CommandType.Search: HandleSearch?.Invoke(_client, updateArgs, cancellationToken); break;
 
-                        case CommandType.UnknowCommand: break;
+                        case CommandType.UnknowCommand: DefaultResponse?.Invoke(_client, updateArgs, cancellationToken); break;
                     }
+
                     break;
                 case UpdateType.CallbackQuery:
                     HandleButtonClick?.Invoke(_client, updateArgs, cancellationToken);

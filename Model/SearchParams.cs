@@ -8,18 +8,13 @@ using System.Threading.Tasks;
 
 namespace Smev_Bot.Model
 {
-    public enum Zone
-    {
-        UnknowZone,
-        Fed,
-        Reg,
-    }
 
     public class SearchParams
     {
+        //requested
         public string name { get; set; }
         public string application { get; set; }
-        public Zone zone { get; set; }
+        public string zone { get; set; }
         public bool displayProdRequest { get; set; }
         public bool displayTestRequest { get; set; }
 
@@ -32,7 +27,7 @@ namespace Smev_Bot.Model
         {
             name = "";
             application = "";
-            zone = Zone.UnknowZone;
+            zone = "";
             displayProdRequest = false;
             displayTestRequest = false;
 
@@ -129,10 +124,10 @@ namespace Smev_Bot.Model
             bool isComplite;
             public bool IsComplite { get { return isComplite; } }
 
-            Zone zone;
+            string zone;
             SearchParams searchParams;
 
-            public SetZone(Zone zone, SearchParams searchParams)
+            public SetZone(string zone, SearchParams searchParams)
             {
                 this.searchParams = searchParams;
                 this.zone = zone;
@@ -148,7 +143,7 @@ namespace Smev_Bot.Model
             public void Undo()
             {
                 if (!isComplite) return;
-                searchParams.zone = Zone.UnknowZone;
+                searchParams.zone = "";
                 isComplite = false;
             }
         }
